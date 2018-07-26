@@ -43,6 +43,7 @@ define([
         _imageReference: null,
         _setReference: false,
         _sourceKeyHandle: null,
+        _actionIntervalID : null,
 
         ckeditorPlugins: [
             "divarea",
@@ -158,7 +159,7 @@ define([
                     document.body.classList.add('cke_extended');
                     this._setNotificationPosition();
                 }
-                setInterval(lang.hitch(this,this._executeIntervalMF),this.actionInterval * 1000 );  
+                this._actionIntervalID = setInterval(lang.hitch(this,this._executeIntervalMF),this.actionInterval * 1000 );  
             }
         },
 
@@ -713,6 +714,9 @@ define([
             if (this._editor) {
                 this._editor.removeAllListeners();
                 this._editor.destroy();
+                if(this.intervaActionEnabled){
+                    clearInterval(this._actionIntervalID );
+                }
             }
         },
 
