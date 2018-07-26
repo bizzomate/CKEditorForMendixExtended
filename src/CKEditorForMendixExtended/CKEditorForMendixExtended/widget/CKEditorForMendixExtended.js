@@ -155,6 +155,7 @@ define([
                 if (this.notificationEnabled){
                     // add general class for customization
                     document.body.classList.add('cke_interval_action_notification');
+                    document.body.classList.add('cke_extended');
                     this._setNotificationPosition();
                 }
                 setInterval(lang.hitch(this,this._executeIntervalMF),this.actionInterval * 1000 );  
