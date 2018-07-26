@@ -178,7 +178,7 @@ define([
        
         
         _setNotificationPosition : function(){
-            document.body.classList.add(`cke_interval_action_notification_pos_${this.notificationPosition}`);
+            document.body.classList.add("cke_interval_action_notification_pos_"+this.notificationPosition);
         },
         
         _executeMf: function(obj, mf, callback) {
