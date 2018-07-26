@@ -44,6 +44,7 @@ define([
         _setReference: false,
         _sourceKeyHandle: null,
         _actionIntervalID : null,
+        _intervalActionHasBeenTriggered: false,
 
         ckeditorPlugins: [
             "divarea",
@@ -165,11 +166,12 @@ define([
 
         _executeIntervalMF : function(){
             this._editorChange(this._editor.getData());
+            this._intervalActionHasBeenTriggered= true;
             this._executeMf(this._contextObj,this.intervalMicroflow,lang.hitch(this,function(){
                 if (this.notificationEnabled){
                     this._editor.showNotification(this.notificationMessage, 'success', this.notificationDuration);
                 }
-                console.debug("action has been executed successfully!");
+                console.debug('interval action ['+this.intervalMicroflow+'] has been executed successfully!');
             }))
         },
 
@@ -606,12 +608,17 @@ define([
             } else {
                 if (this._contextObj) {
                     domStyle.set(this.domNode, "visibility", "visible");
-
                     if (this._editor !== null) {
-
-                        this._editor.setData(this._contextObj.get(this.messageString));
-                        this._editor.setReadOnly(this._strReadOnly());
-
+                        // check whether the interval action is  behind the invokation of update rendering, if yes then DO Not 
+                        // a set data because this will cause the editor to loose its foucs.
+                        if(this._intervalActionHasBeenTriggered){
+                            this._intervalActionHasBeenTriggered = false;
+                        }else{
+                            // otherwise do just normal
+                            this._editor.setData(this._contextObj.get(this.messageString));
+                            this._editor.setReadOnly(this._strReadOnly());
+                        }
+                        
                     } else {
                         logger.warn(this.id + " - Unable to add contents to editor, no _editor object available");
                     }
