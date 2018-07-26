@@ -45,6 +45,7 @@ define([
         _sourceKeyHandle: null,
         _actionIntervalID : null,
         _intervalActionHasBeenTriggered: false,
+        _intervalNotificationCSSClassPosition : "",
 
         ckeditorPlugins: [
             "divarea",
@@ -65,6 +66,7 @@ define([
             this._CKEditor = window.CKEDITOR;
             this._CKEditor.jQuery = $;
             this._CKEditor.getImages = lang.hitch(this, this.retrieveImages);
+            this._intervalNotificationCSSClassPosition = "cke_interval_action_notification_pos_"+this.notificationPosition;
 
             if (this.imageentity) {
                 var split = this.imageentity.split("/");
@@ -154,12 +156,7 @@ define([
 
         _setIntervalFeature : function(){
             if(this.intervaActionEnabled){
-                if (this.notificationEnabled){
-                    // add general class for customization
-                    document.body.classList.add('cke_interval_action_notification');
-                    document.body.classList.add('cke_extended');
-                    this._setNotificationPosition();
-                }
+                this._addNotificationStylingSelectors();
                 this._actionIntervalID = setInterval(lang.hitch(this,this._executeIntervalMF),this.actionInterval * 1000 );  
             }
         },
@@ -177,8 +174,21 @@ define([
 
        
         
-        _setNotificationPosition : function(){
-            document.body.classList.add("cke_interval_action_notification_pos_"+this.notificationPosition);
+        _addNotificationStylingSelectors : function(){
+            if (this.notificationEnabled){
+                // add general css classes for customization
+                document.body.classList.add('cke_extended');
+                document.body.classList.add('cke_interval_action_notification');
+                document.body.classList.add(this._intervalNotificationCSSClassPosition);
+            } 
+        },
+        _removeNotificationStylingSelectors : function(){
+            if (this.notificationEnabled){
+                // remove the added css classes for notificaion
+                document.body.classList.remove('cke_extended');
+                document.body.classList.remove('cke_interval_action_notification');
+                document.body.classList.remove(this._intervalNotificationCSSClassPosition);
+            } 
         },
         
         _executeMf: function(obj, mf, callback) {
@@ -723,7 +733,9 @@ define([
                 this._editor.destroy();
                 if(this.intervaActionEnabled){
                     clearInterval(this._actionIntervalID );
+                    this._removeNotificationStylingSelectors();
                 }
+                
             }
         },
 
