@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="CKEditorForMendixExtended.widget.CKEditorViewerForMendix" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>CKEditor viewer for Mendix</name>
+    <description>The CKEditor output viewer for Mendix.</description>
+    <icon></icon>
+    <properties>
+        <property key="messageString" type="attribute" defaultValue="">
+            <caption>Content attribute</caption>
+            <category>Data source</category>
+            <description>Add the attribute containing the contents to display.</description>
+            <attributeTypes>
+                <attributeType name="String"/>
+            </attributeTypes>
+        </property>
+        <property key="microflowLinks" type="object" isList="true" required="false">
+            <caption>Microflow links</caption>
+            <category>Microflow links</category>
+            <description>Microflows which can be linked to in the text.</description>
+            <properties>
+                <property key="functionNames" type="string" required="true">
+                    <caption>Link Name</caption>
+                    <category>Link</category>
+                    <description>Descriptive name of a microflow, which can be inserted as link in the document. The mapping of the name to a real microflow is the responsibility of the Rich Text Viewer.</description>
+                </property>
+                <property key="mfName" type="microflow" required="true">
+                    <caption>Microflow Name</caption>
+                    <category>Link</category>
+                    <description>Attach the microflow.</description>
+                    <returnType type="Void"></returnType>
+                </property>
+            </properties>
+        </property>
+        <property key="cutOffRules" type="integer" required="true" defaultValue="0">
+            <caption>Cut of rules</caption>
+            <category>Appearance</category>
+            <description>Cut of text after a certain height. Set this to a number of pixels.</description>
+        </property>
+    </properties>
+</widget>

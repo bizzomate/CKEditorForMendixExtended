@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.mendix.com/package/1.0/">
+    <clientModule name="CKEditorForMendixExtended" version="2.4.8" xmlns="http://www.mendix.com/clientModule/1.0/">
+        <widgetFiles>
+            <widgetFile path="CKEditorForMendixExtended/CKEditorForMendixExtended.xml"/>
+            <widgetFile path="CKEditorForMendixExtended/CKEditorViewerForMendix.xml"/>
+        </widgetFiles>
+        <files>
+            <file path="CKEditorForMendixExtended/widget/"/>
+        </files>
+    </clientModule>
+</package>
