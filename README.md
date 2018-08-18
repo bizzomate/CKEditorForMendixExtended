@@ -2,11 +2,15 @@
 An extended version of Mendix CKEditor Widget  
 
 
-**New Features:**
+# New Features:
 
-**1. Set IntervalAction with Notificdations (trigger an action after a predefined time interval):**
+## 1. Set IntervalAction with Notifications
 
-* In order to customize notification look and feel (color, font, background ...etc) use add these css classes:
+* Repeatedly trigger/execute a microflow/action with a fixed time delay between each call. (e.g. save your editor's content every five minutes) 
+
+* **Enable/Disable** Notification. after a successful execution of the microflow/action a notification will be triggered toi notify the user that the action has been executed successfully (+ you can customize notification message)
+
+### Here a guide on how you can style your notifications in order to match your theme requirements:
 
 ```css
 .cke_extended .cke_notification{
@@ -49,3 +53,13 @@ An extended version of Mendix CKEditor Widget
     right : 75px !important;
  }
 ```
+
+
+## Issues : 
+
+If you encountered any issues in regard to the newly added features you can report it [here](https://github.com/bizzomate/CKEditorForMendixExtended/issues).
+
+
+
+
+
