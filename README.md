@@ -1,6 +1,9 @@
 # CKEditorForMendixExtended
 An extended version of Mendix CKEditor Widget  
 
+<p align="center">
+<img src="MxCKEditorExtended.png?raw=true" />
+</p>
 
 # New Features:
 
